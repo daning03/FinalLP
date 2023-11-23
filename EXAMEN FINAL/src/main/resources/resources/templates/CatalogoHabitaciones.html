@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Habitaciones</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+    <header th:insert="~{layout :: header}"></header>
+    <div class="container">
+        <h1 class="mt-4 mb-4">Catálogo de Habitaciones</h1>
+        <div class="row row-cols-1 row-cols-md-4 g-4 py-4">
+            <div class="col" th:each="habitacion : ${habitaciones}">
+                <div class="card">
+                    <img th:src="@{http://placehold.it/500x325}" class="card-img-top" alt="Habitación">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${habitacion.nombre}"></h5>
+                        <p class="card-text" th:text="${habitacion.descripcion}"></p>
+                        <p class="card-text" th:text="${'Precio: S/. ' + habitacion.precio}"></p>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <a th:href="@{/reservas/agregarCarrito/{id}(id=${habitacion.id})}" class="btn btn-outline-success m-2">Agregar al Carrito</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer th:insert="~{layout :: footer}"></footer>
+    <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/js/jquery-3.7.1.min.js}"></script>
+    <script th:src="@{/js/sweetalert2.all.min.js}"></script>
+    <script type="text/javascript">
+        // Puedes mantener tu script existente para mostrar la alerta al agregar al carrito
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Reservas</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+    <!-- Insertar el layout común -->
+    <div th:replace="layout :: layout"></div>
+
+    <div class="container mt-4">
+        <h2>Carrito de Reservas</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Habitación</th>
+                    <th scope="col">Fecha de Inicio</th>
+                    <th scope="col">Fecha de Fin</th>
+                    <th scope="col">Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterar sobre las reservas en el carrito y mostrar los detalles -->
+                <tr th:each="reserva, iterStat : ${reservasEnCarrito}">
+                    <th scope="row" th:text="${iterStat.index + 1}"></th>
+                    <td th:text="${reserva.habitacion.nombre}"></td>
+                    <td th:text="${reserva.fechaInicio}"></td>
+                    <td th:text="${reserva.fechaFin}"></td>
+                    <td th:text="${'S/. ' + reserva.total}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Agregar más detalles y opciones para ajustar la reserva si es necesario -->
+
+        <div class="d-flex justify-content-end mt-4">
+            <!-- Agregar botón para confirmar la reserva -->
+            <a href="/reservas/confirmarReserva" class="btn btn-primary">Confirmar Reserva</a>
+        </div>
+    </div>
+
+    <!-- Insertar scripts JS comunes -->
+    <script th:replace="layout :: scripts"></script>
+</body>
+</html>
+
